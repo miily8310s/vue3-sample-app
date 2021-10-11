@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import { Pokemons } from "@/entities";
-import { getPokemons } from "@/services/pokemon";
+import { getPokemons, getPokemon } from "@/services/pokemon";
 
 interface State {
   pokemons: Partial<Pokemons>;
@@ -19,14 +19,14 @@ export default createStore({
     },
   },
   mutations: {
-    setPokemon(state: State, pokemons: Pokemons) {
+    setPokemons(state: State, pokemons: Pokemons) {
       state.pokemons = pokemons;
     },
   },
   actions: {
     async fetchPokemons({ commit }) {
       const pokemons = await getPokemons();
-      commit("setPokemon", pokemons);
+      commit("setPokemons", pokemons);
     },
   },
   modules: {},

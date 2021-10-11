@@ -1,11 +1,19 @@
 <template>
-  <h1>{{ pokemon.name }}</h1>
-  <p>{{ pokemon.url }}</p>
+  <h1>
+    <span>{{ pokemonData.id }}</span> {{ pokemonData.name }}
+  </h1>
+  <img :src="pokemonTypes" />
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { PokemonResult } from "@/entities/index";
+import { getPokemon } from "@/services/pokemon";
+
+interface DataType {
+  // TODO: specify type definition
+  pokemonData: any;
+}
 
 export default defineComponent({
   name: "Pokemon",
@@ -16,21 +24,23 @@ export default defineComponent({
       required: true,
     },
   },
-  setup() {
-    // const store = useStore();
-    // const data: DataType = reactive({ initilize: false });
-    // const pokemons = computed(() => {
-    //   return store.getters.getPokemons;
-    // });
-    // onMounted(() => {
-    //   store.dispatch("fetchPokemons");
-    //   data.initilize = true;
-    // });
-    // return {
-    //   data,
-    //   // message,
-    //   pokemons,
-    // };
+  data(): DataType {
+    return {
+      pokemonData: {},
+    };
   },
+  computed: {
+    pokemonTypes(): string {
+      return this.pokemonData.sprites
+        ? this.pokemonData.sprites.front_default
+        : "";
+    },
+  },
+  async created() {
+    this.pokemonData = await getPokemon(this.pokemon.name);
+  },
+  // TODO: setupだとテンプレートに表示できないため、一旦Options APIで対処
+  // setup() {
+  // },
 });
 </script>
