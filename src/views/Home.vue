@@ -1,7 +1,11 @@
 <template>
-  <div class="home" v-if="data.initilize">
+  <div class="styledGrid" v-if="data.initilize">
     <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
-    <div v-for="(pokemon, index) in pokemons" :key="`${index}_${pokemon.name}`">
+    <div
+      class="styledGridPokemon"
+      v-for="(pokemon, index) in pokemons"
+      :key="`${index}_${pokemon.name}`"
+    >
       <Pokemon :pokemon="pokemon" />
     </div>
   </div>
@@ -41,3 +45,14 @@ export default defineComponent({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.styledGrid {
+  display: flex;
+  flex-wrap: wrap;
+}
+.styledGridPokemon {
+  margin-right: 1.5rem;
+  margin-bottom: 1.2rem;
+}
+</style>
