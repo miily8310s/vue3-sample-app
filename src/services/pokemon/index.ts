@@ -7,7 +7,6 @@ export const getPokemons = (): Promise<GenericResponse<Pokemons>> => {
 };
 export const getPokemon = (
   pokemonName: string
-  // TODO: specify type definition
 ): Promise<GenericResponse<any>> => {
   const getPokemonURL = `pokemon/${pokemonName}`;
   return http.get(getPokemonURL).then((res) => res.data);

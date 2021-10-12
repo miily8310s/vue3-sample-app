@@ -9,12 +9,20 @@
       <span>{{ pokemonData.id }}</span> {{ pokemonData.name }}
     </h1>
     <img :src="pokemonFront" />
+    <div class="styledCardTypes" :class="{ '-multipleTypes': isMultipleTypes }">
+      <div
+        v-for="pokemonType in pokemonTypes"
+        :key="`${pokemonData.name}_${pokemonType}`"
+      >
+        <span class="styledCardType">{{ pokemonType.type.name }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { PokemonResult } from "@/entities/index";
+import { PokemonResult, PokemonDataTypes } from "@/entities/index";
 import { getPokemon } from "@/services/pokemon";
 
 interface DataType {
@@ -54,14 +62,36 @@ export default defineComponent({
   },
   data(): DataType {
     return {
-      pokemonData: {},
+      pokemonData: {
+        id: 0,
+        name: "",
+        sprites: {
+          front_default: "",
+        },
+        types: [
+          {
+            slot: 0,
+            type: {
+              name: "",
+              url: "",
+            },
+          },
+        ],
+      },
     };
   },
   computed: {
     pokemonFront(): string {
-      return this.pokemonData.sprites
-        ? this.pokemonData.sprites.front_default
-        : "";
+      return this.pokemonData.sprites.front_default;
+    },
+    pokemonTypes(): PokemonDataTypes[] {
+      if (!this.pokemonData.types) {
+        return [];
+      }
+      return this.pokemonData.types;
+    },
+    isMultipleTypes() {
+      return this.pokemonTypes.length > 1;
     },
     pokemonTypeName(): string {
       return this.pokemonData.types
@@ -87,5 +117,23 @@ export default defineComponent({
   width: 250px;
   margin: 5px;
   border-radius: 5%;
+}
+.styledCardTypes {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 6rem;
+  padding-bottom: 1rem;
+  color: #082032;
+
+  &.-multipleTypes {
+    margin-left: 4.5rem;
+  }
+}
+
+.styledCardType {
+  padding: 2px 6px;
+  border-radius: 10%;
+  background-color: #c1ffd7;
+  margin-right: 5px;
 }
 </style>

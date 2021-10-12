@@ -9,3 +9,20 @@ export interface Pokemons {
   previous: string | null;
   results: PokemonResult[];
 }
+
+export interface PokemonData {
+  id: number;
+  name: string;
+  types: PokemonDataTypes[];
+  sprites: {
+    front_default: string;
+  };
+}
+
+export interface PokemonDataTypes {
+  slot: number;
+  type: {
+    name: string;
+    url: string;
+  };
+}

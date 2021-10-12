@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import { Pokemons } from "@/entities";
-import { getPokemons, getPokemon } from "@/services/pokemon";
+import { getPokemons } from "@/services/pokemon";
 
 interface State {
   pokemons: Partial<Pokemons>;
