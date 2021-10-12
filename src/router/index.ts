@@ -1,11 +1,17 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 import Home from "../views/Home.vue";
+import PokemonDetails from "../views/pokemon/PokemonDetails.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/pokemon/:name",
+    name: "PokemonDetails",
+    component: PokemonDetails,
   },
   // {
   //   path: "/about",

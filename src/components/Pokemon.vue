@@ -6,13 +6,17 @@
     }"
   >
     <h1>
-      <span>{{ pokemonData.id }}</span> {{ pokemonData.name }}
+      <router-link
+        :to="{ name: 'PokemonDetails', params: { name: pokemon.name } }"
+      >
+        <span>{{ pokemonData.id }}</span> {{ pokemonData.name }}
+      </router-link>
     </h1>
     <img :src="pokemonFront" />
     <div class="styledCardTypes" :class="{ '-multipleTypes': isMultipleTypes }">
       <div
-        v-for="pokemonType in pokemonTypes"
-        :key="`${pokemonData.name}_${pokemonType}`"
+        v-for="(pokemonType, index) in pokemonTypes"
+        :key="`${pokemonData.name}_${index}`"
       >
         <span class="styledCardType">{{ pokemonType.type.name }}</span>
       </div>
