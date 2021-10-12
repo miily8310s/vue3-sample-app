@@ -14,7 +14,6 @@
 
 <script lang="ts">
 import { computed, reactive, onMounted, defineComponent } from "vue";
-// import HelloWorld from "@/components/HelloWorld.vue";
 import Pokemon from "@/components/Pokemon.vue";
 import { useStore } from "vuex";
 
@@ -50,6 +49,7 @@ export default defineComponent({
 .styledGrid {
   display: flex;
   flex-wrap: wrap;
+  margin-left: 5rem;
 }
 .styledGridPokemon {
   margin-right: 1.5rem;

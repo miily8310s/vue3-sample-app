@@ -1,18 +1,16 @@
 <template>
-  <div class="styledCard" style="background-color: #2adab1">
+  <div
+    class="styledCard"
+    :style="{
+      backgroundColor: pokemonBackgroundColor,
+    }"
+  >
     <h1>
       <span>{{ pokemonData.id }}</span> {{ pokemonData.name }}
     </h1>
     <img :src="pokemonFront" />
   </div>
 </template>
-
-<!-- TODO: style bindの方法調べる -->
-<!-- :style="{
-      'background-color': pokemonBackgroundColor(
-        pokemonData.types[0].type.name
-      ),
-    }" -->
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
@@ -28,21 +26,21 @@ const typeColors: { [key: string]: string } = {
   bug: "#2ADAB1",
   dark: "#636363",
   dragon: "#E9B057",
-  electric: "#ffeb5b",
+  electric: "#FCFFA6",
   fairy: "#ffdbdb",
   fighting: "#90a4b5",
-  fire: "#F7786B",
+  fire: "#FF5C58",
   flying: "#E8DCB3",
-  ghost: "#755097",
-  grass: "#2ADAB1",
-  ground: "#dbd3a2",
+  ghost: "#091353",
+  grass: "#80ED99",
+  ground: "#F5C6A5",
   ice: "#C8DDEA",
   normal: "#ccc",
   poison: "#cc89ff",
-  psychic: "#705548",
+  psychic: "#9D84B7",
   rock: "#b7b7b7",
-  steel: "#999",
-  water: "#58ABF6",
+  steel: "#D5D5D5",
+  water: "#B2F9FC",
 };
 
 export default defineComponent({
@@ -65,17 +63,16 @@ export default defineComponent({
         ? this.pokemonData.sprites.front_default
         : "";
     },
-  },
-  methods: {
-    pokemonBackgroundColor(typeName: any): string {
-      if (!this.pokemonData.types || !this.pokemonData.types[0]) {
-        return "#58ABF6";
-      }
-      console.log(this.pokemonData.types[0].type.name);
-      console.log(typeColors[typeName]);
-      return typeColors[typeName];
+    pokemonTypeName(): string {
+      return this.pokemonData.types
+        ? this.pokemonData.types[0].type.name
+        : "water";
+    },
+    pokemonBackgroundColor(): string {
+      return typeColors[this.pokemonTypeName];
     },
   },
+  methods: {},
   async created() {
     this.pokemonData = await getPokemon(this.pokemon.name);
   },
@@ -89,5 +86,6 @@ export default defineComponent({
 .styledCard {
   width: 250px;
   margin: 5px;
+  border-radius: 5%;
 }
 </style>
