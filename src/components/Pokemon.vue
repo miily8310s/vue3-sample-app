@@ -30,7 +30,6 @@ import { PokemonResult, PokemonDataTypes } from "@/entities/index";
 import { getPokemon } from "@/services/pokemon";
 
 interface DataType {
-  // TODO: specify type definition
   pokemonData: any;
 }
 
@@ -121,6 +120,21 @@ export default defineComponent({
   width: 250px;
   margin: 5px;
   border-radius: 5%;
+
+  img {
+    width: 40%;
+  }
+
+  h1 {
+    a {
+      text-decoration: none;
+      color: inherit;
+
+      &:hover {
+        opacity: 0.6;
+      }
+    }
+  }
 }
 .styledCardTypes {
   display: flex;

@@ -1,6 +1,5 @@
 <template>
   <div class="styledGrid" v-if="data.initilize">
-    <!-- <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" /> -->
     <div
       class="styledGridPokemon"
       v-for="(pokemon, index) in pokemons"
@@ -24,7 +23,6 @@ interface DataType {
 export default defineComponent({
   name: "Home",
   components: {
-    // HelloWorld,
     Pokemon,
   },
   setup() {
@@ -47,9 +45,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .styledGrid {
-  display: flex;
-  flex-wrap: wrap;
-  margin-left: 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem 2rem;
+  margin: 0 3rem;
 }
 .styledGridPokemon {
   margin-right: 1.5rem;
