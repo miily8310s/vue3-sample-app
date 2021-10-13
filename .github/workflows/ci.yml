@@ -5,7 +5,7 @@ on:
     branches:
       - dev
 
-job:
+jobs:
   pipeline-ci:
     runs-on: ubuntu-latest
     steps:
