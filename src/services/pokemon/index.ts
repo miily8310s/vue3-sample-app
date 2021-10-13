@@ -7,6 +7,7 @@ export const getPokemons = (): Promise<GenericResponse<Pokemons>> => {
 };
 export const getPokemon = (
   pokemonName: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): Promise<GenericResponse<any>> => {
   const getPokemonURL = `pokemon/${pokemonName}`;
   return http.get(getPokemonURL).then((res) => res.data);

@@ -21,6 +21,7 @@ import { PokemonDataTypes } from "@/entities/index";
 import { getPokemon } from "@/services/pokemon";
 
 interface DataType {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   pokemonDetailsData: any;
 }
 
