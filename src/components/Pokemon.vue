@@ -6,11 +6,11 @@
     }"
   >
     <h1>
-      <router-link
+      <!-- <router-link
         :to="{ name: 'PokemonDetails', params: { name: pokemon.name } }"
-      >
-        <span>{{ pokemonData.id }}</span> {{ pokemonData.name }}
-      </router-link>
+      > -->
+      <span>{{ pokemonData.id }}</span> {{ pokemonData.name }}
+      <!-- </router-link> -->
     </h1>
     <img :src="pokemonFront" />
     <div class="styledCardTypes" :class="{ '-multipleTypes': isMultipleTypes }">
@@ -108,7 +108,11 @@ export default defineComponent({
   },
   methods: {},
   async created() {
-    this.pokemonData = await getPokemon(this.pokemon.name);
+    try {
+      this.pokemonData = await getPokemon(this.pokemon.name);
+    } catch (error) {
+      console.log(error);
+    }
   },
   // TODO: setupだとテンプレートに表示できないため、一旦Options APIで対処
   // setup() {
